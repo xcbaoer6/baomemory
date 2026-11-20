@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "baomemory",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "ai": { "binding": "AI" },
+  // 03:00 Asia/Shanghai every day
+  "triggers": { "crons": ["0 19 * * *"] },
+  // SUPABASE_URL is set in the dashboard; keep_vars stops deploys from wiping it
+  "keep_vars": true,
+  "vars": {
+    "STORAGE_ADAPTER": "supabase",
+    "EMBEDDER_ADAPTER": "workers-ai",
+    "SUMMARIZER_ADAPTER": "workers-ai"
+  },
+  // Set in the dashboard: SUPABASE_URL (variable or secret), SUPABASE_SERVICE_KEY and API_KEY (secrets)
+  "observability": { "enabled": true },
+  "placement": { "mode": "smart" }
+}
